@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>LEO 1M • FF Sensitivity 2026 0–200</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{
+margin:0;
+font-family:Arial,Helvetica,sans-serif;
+background:linear-gradient(135deg,#020617,#0f172a);
+color:#fff;
+}
+.container{max-width:480px;margin:20px auto;padding:15px;}
+h1{text-align:center;color:#38bdf8;margin-bottom:5px;}
+.owner{text-align:center;color:#22c55e;font-weight:bold;letter-spacing:3px;margin-bottom:12px;}
+.card{
+background:#020617;
+border-radius:14px;
+padding:18px;
+box-shadow:0 0 20px rgba(56,189,248,.45);
+}
+select,input[type=range],button{
+width:100%;
+margin-top:10px;
+}
+select,button{
+padding:12px;
+border-radius:10px;
+border:1px solid #38bdf8;
+background:#020617;
+color:#fff;
+font-size:15px;
+}
+button{
+background:#38bdf8;
+color:#000;
+font-weight:bold;
+cursor:pointer;
+}
+button.copy{background:#22c55e;}
+label{font-size:13px;opacity:.85;}
+.value{float:right;color:#38bdf8;}
+.result{margin-top:15px;line-height:1.7;font-size:15px;}
+.footer{text-align:center;font-size:12px;opacity:.7;margin-top:12px;}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<h1>🔥 FF SENSITIVITY 2026</h1>
+<div class="owner">LEO 1M</div>
+
+<div class="card">
+
+<select id="brand" onchange="loadModels()">
+<option value="">Select Brand</option>
+<option>Samsung</option>
+<option>Xiaomi</option>
+<option>Redmi</option>
+<option>POCO</option>
+<option>iPhone</option>
+<option>Huawei</option>
+<option>Honor</option>
+<option>OPPO</option>
+<option>Vivo</option>
+<option>Realme</option>
+<option>Infinix</option>
+<option>Tecno</option>
+<option>Motorola</option>
+<option>OnePlus</option>
+<option>Nokia</option>
+<option>Sony</option>
+<option>Asus</option>
+<option>Google Pixel</option>
+</select>
+
+<select id="model">
+<option>Select Model</option>
+</select>
+
+<label>General (Headshot) <span id="hsV" class="value">150</span></label>
+<input type="range" min="0" max="200" value="150" id="hs" oninput="hsV.innerText=this.value">
+
+<label>Red Dot <span id="rV" class="value">140</span></label>
+<input type="range" min="0" max="200" value="140" id="r" oninput="rV.innerText=this.value">
+
+<label>2x Scope <span id="x2V" class="value">135</span></label>
+<input type="range" min="0" max="200" value="135" id="x2" oninput="x2V.innerText=this.value">
+
+<label>4x Scope <span id="x4V" class="value">125</span></label>
+<input type="range" min="0" max="200" value="125" id="x4" oninput="x4V.innerText=this.value">
+
+<label>AWM Scope <span id="awmV" class="value">105</span></label>
+<input type="range" min="0" max="200" value="105" id="awm" oninput="awmV.innerText=this.value">
+
+<label>Free Look <span id="lookV" class="value">85</span></label>
+<input type="range" min="0" max="200" value="85" id="look" oninput="lookV.innerText=this.value">
+
+<button onclick="generate()">GET SENSITIVITY</button>
+
+<div class="result" id="out"></div>
+<button class="copy" onclick="copyText()">COPY SETTINGS</button>
+
+</div>
+
+<div class="footer">© LEO 1M • Best FF Sensitivity Generator 2026</div>
+</div>
+
+<script>
+const models={
+Samsung:["A14","A15","A34","A35","A54","A55","S23","S24","S24 Ultra","S25","Note 20","Z Fold 6"],
+Xiaomi:["13","13T","14","14T","14 Ultra","Redmi Note 13","Redmi Note 14 Pro"],
+Redmi:["Note 12","Note 13","Note 13 Pro","Note 14","Note 14 Pro","14C"],
+POCO:["X5","X6","X6 Pro","X7","X7 Pro","F5","F6","F6 Pro"],
+iPhone:["13","14","15","15 Pro","16","16 Pro","16 Pro Max"],
+Huawei:["P60","Mate 50","Nova 11","Nova 12"],
+Honor:["90","Magic 5","Magic 6","X9b"],
+OPPO:["A78","A98","Reno 8","Reno 10","Reno 11","Reno 12"],
+Vivo:["Y36","Y100","V29","V30","V40"],
+Realme:["10","11","12","12 Pro","13","13 Pro","GT 6","GT 7"],
+Infinix:["Hot 30","Hot 40","Note 30","Note 40","Zero 30","Zero Ultra"],
+Tecno:["Spark 20","Spark 30","Pova 5","Pova 6","Camon 30"],
+Motorola:["G54","G84","Edge 40","Edge 50","Moto G 2026"],
+OnePlus:["11","12","12R","13","13R","Open"],
+Nokia:["G42","XR21","C32"],
+Sony:["Xperia 1 V","Xperia 5 V","Xperia 10 VI"],
+Asus:["ROG 7","ROG 8","ROG 8 Pro","Zenfone 11"],
+"Google Pixel":["8","8 Pro","9","9 Pro","Pixel Fold"]
+};
+
+function loadModels(){
+let b=document.getElementById("brand").value;
+let m=document.getElementById("model");
+m.innerHTML="<option>Select Model</option>";
+if(models[b]){
+models[b].forEach(x=>{
+let o=document.createElement("option");
+o.text=x;
+m.add(o);
+});
+}
+}
+
+function generate(){
+let brand=document.getElementById("brand");
+let model=document.getElementById("model");
+if(!brand.value||!model.value){alert("Интихоб кунед бренд ва модел!");return;}
+
+let power="LOW";
+if(["iPhone","Asus","Google Pixel","OnePlus","Sony"].includes(brand.value)) power="HIGH";
+else if(["Samsung","Xiaomi","POCO","Redmi","Realme","OPPO","Vivo"].includes(brand.value)) power="MID";
+
+let fire=power=="LOW"?45:power=="MID"?55:70;
+
+let hs=document.getElementById("hs").value;
+let r=document.getElementById("r").value;
+let x2=document.getElementById("x2").value;
+let x4=document.getElementById("x4").value;
+let awm=document.getElementById("awm").value;
+let look=document.getElementById("look").value;
+
+window.finalText=
+brand.value+" "+model.value+"\n"+
+"General: "+hs+
+"\nRed Dot: "+r+
+"\n2x Scope: "+x2+
+"\n4x Scope: "+x4+
+"\nAWM Scope: "+awm+
+"\nFree Look: "+look+
+"\nFire Button: "+fire+"%";
+
+document.getElementById("out").innerHTML=
+"<b>📱 "+brand.value+" "+model.value+"</b><br><br>"+
+"General: <b>"+hs+"</b><br>"+
+"Red Dot: <b>"+r+"</b><br>"+
+"2x Scope: <b>"+x2+"</b><br>"+
+"4x Scope: <b>"+x4+"</b><br>"+
+"AWM Scope: <b>"+awm+"</b><br>"+
+"Free Look: <b>"+look+"</b><br>"+
+"Fire Button: <b>"+fire+"%</b>";
+}
+
+function copyText(){
+navigator.clipboard.writeText(window.finalText);
+alert("Copied! 🔥");
+}
+</script>
+
+</body>
+</html>
